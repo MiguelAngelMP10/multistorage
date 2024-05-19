@@ -1,0 +1,56 @@
+# Composer dependencies
+/vendor/
+/composer.lock
+
+# PHPStorm project files
+/.idea/
+
+# PHPunit
+/build/
+/coverage/
+/phpunit.xml
+
+# Logs and temp files
+*.log
+*.cache
+*.tmp
+
+# Ignore environment variables
+.env
+
+# Ignore node_modules if you have frontend dependencies
+/node_modules/
+
+# Vagrant boxes
+*.box
+
+# IDE config files
+.vscode/
+
+# MacOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+
+# PHPStorm specific files
+/.idea/
+*.iml
+
+# Exclude the test output and temporary files
+/test_files/
+
+# Ignore compiled code
+*.out
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Exclude backup files
+*~
+
+# Ignore coverage reports
+/build/logs/

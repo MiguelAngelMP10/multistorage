@@ -1,0 +1,40 @@
+{
+    "name": "miguelangelmp10/multistorage",
+    "description": "A package to handle multiple storage backends",
+    "type": "library",
+    "version": "0.0.1",
+    "require": {
+        "php": ">=8.2",
+        "aws/aws-sdk-php": "^3.0",
+        "google/cloud-storage": "^1.24",
+        "microsoft/azure-storage-blob": "^1.5",
+        "phpseclib/phpseclib": "^3.0"
+      
+    },
+    "autoload": {
+        "psr-4": {
+            "MiguelAngelMP10\\Multistorage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MiguelAngelMP10\\Multistorage\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^9.6"
+    },
+    "scripts": {
+        "test": "phpunit --testdox"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miguel Angel Muñoz Pozos",
+            "email": "mmunozpozos@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
