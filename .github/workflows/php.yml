@@ -11,11 +11,16 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'  # Cambia a la versión de PHP que necesites
+        extensions: mbstring, intl, xml, ctype, json, iconv, curl
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -32,11 +37,8 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
     - name: Run test suite
       run: composer test
-      
-    - name: Run phpstan analyse
-      run: vendor/bin/phpstan analyse 
+
+    - name: Run PHPStan analysis
+      run: vendor/bin/phpstan analyse
