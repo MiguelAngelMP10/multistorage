@@ -1,0 +1,6 @@
+# phpstan.neon
+parameters:
+    level: 7
+    paths:
+        - src
+        - tests

@@ -5,8 +5,8 @@ use MiguelAngelMP10\Multistorage\Interfaces\StorageInterface;
 use phpseclib3\Net\SFTP;
 
 class SftpStorage implements StorageInterface {
-    private $sftp;
-    private $remoteDirectory;
+    private SFTP $sftp;
+    private string $remoteDirectory;
 
     public function __construct(string $host, string $username, string $password, string $remoteDirectory) {
         $this->sftp = new SFTP($host);

@@ -23,7 +23,8 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.4",
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "phpstan/phpstan": "^1.11"
     },
     "scripts": {
         "test": "phpunit --testdox"

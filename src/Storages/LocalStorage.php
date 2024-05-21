@@ -4,7 +4,7 @@ namespace MiguelAngelMP10\Multistorage\Storages;
 use MiguelAngelMP10\Multistorage\Interfaces\StorageInterface;
 
 class LocalStorage implements StorageInterface {
-    private $directory;
+    private string $directory;
 
     public function __construct(string $directory) {
         $this->directory = rtrim($directory, '/') . '/';

@@ -3,27 +3,34 @@
 use PHPUnit\Framework\TestCase;
 use MiguelAngelMP10\Multistorage\Storages\LocalStorage;
 
-class LocalStorageTest extends TestCase {
-    private $testDirectory = __DIR__ . '/test_files/';
+class LocalStorageTest extends TestCase
+{
+    private string $testDirectory = __DIR__ . '/test_files/';
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         if (!file_exists($this->testDirectory)) {
             mkdir($this->testDirectory, 0777, true);
         }
     }
 
-    
-    protected function tearDown(): void {
+
+    protected function tearDown(): void
+    {
         $files = glob($this->testDirectory . '*');
+        if ($files === false) {
+            $files = [];
+        }
         foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);
             }
         }
     }
-    
 
-    public function testWriteFile() {
+
+    public function testWriteFile(): void
+    {
         $storage = new LocalStorage($this->testDirectory);
         $filename = 'test.txt';
         $content = 'Hello, World!';

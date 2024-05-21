@@ -6,8 +6,8 @@ use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
 class S3Storage implements StorageInterface {
-    private $s3Client;
-    private $bucketName;
+    private S3Client $s3Client;
+    private string $bucketName;
 
     public function __construct(string $bucketName, string $region, string $accessKeyId, string $secretAccessKey) {
         $this->s3Client = new S3Client([

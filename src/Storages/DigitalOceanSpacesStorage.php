@@ -1,16 +1,18 @@
 <?php
+
 namespace MiguelAngelMP10\Multistorage\Storages;
 
 use MiguelAngelMP10\Multistorage\Interfaces\StorageInterface;
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 
-class DigitalOceanSpacesStorage implements StorageInterface {
-    private $s3Client;
-    private $spaceName;
-    private $region;
+class DigitalOceanSpacesStorage implements StorageInterface
+{
+    private S3Client $s3Client;
+    private string $spaceName;
 
-    public function __construct(string $spaceName, string $region, string $accessKeyId, string $secretAccessKey) {
+    public function __construct(string $spaceName, string $region, string $accessKeyId, string $secretAccessKey)
+    {
         $this->s3Client = new S3Client([
             'endpoint' => "https://$region.digitaloceanspaces.com",
             'region' => $region,
@@ -23,7 +25,8 @@ class DigitalOceanSpacesStorage implements StorageInterface {
         $this->spaceName = $spaceName;
     }
 
-    public function writeFile(string $filename, string $content): bool {
+    public function writeFile(string $filename, string $content): bool
+    {
         try {
             $this->s3Client->putObject([
                 'Bucket' => $this->spaceName,
