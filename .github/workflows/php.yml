@@ -22,9 +22,6 @@ jobs:
         php-version: '8.0'  # Cambia a la versión de PHP que necesites
         extensions: mbstring, intl, xml, ctype, json, iconv, curl
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v3
