@@ -8,7 +8,6 @@
 # PHPunit
 /build/
 /coverage/
-/phpunit.xml
 
 # Logs and temp files
 *.log
