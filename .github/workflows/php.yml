@@ -34,8 +34,13 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Debug PHPUnit
+      run: |
+        vendor/bin/phpunit --version
+        vendor/bin/phpunit --testdox --debug
+
     - name: Run test suite
-      run: composer test
+      run: vendor/bin/phpunit --testdox
 
     - name: Run PHPStan analysis
       run: vendor/bin/phpstan analyse
