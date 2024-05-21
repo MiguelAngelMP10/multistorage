@@ -27,7 +27,7 @@
         "phpstan/phpstan": "^1.11"
     },
     "scripts": {
-        "test": "phpunit --testdox"
+        "test": "vendor/bin/phpunit --testdox"
     },
     "license": "MIT",
     "authors": [
