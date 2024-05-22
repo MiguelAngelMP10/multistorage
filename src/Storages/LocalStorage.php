@@ -11,6 +11,9 @@ class LocalStorage implements StorageInterface {
     }
 
     public function writeFile(string $filename, string $content): bool {
+        if (!is_dir($this->directory)) {
+            mkdir($this->directory, 0755, true);
+        }
         return file_put_contents($this->directory . $filename, $content) !== false;
     }
 }
