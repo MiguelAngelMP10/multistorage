@@ -29,6 +29,19 @@ class LocalStorageTest extends TestCase
     }
 
 
+    public function testWriteFileWithDir(): void
+    {
+        $storage = new LocalStorage($this->testDirectory);
+        $filename = 'dir/test.txt';
+        $content = 'Hello, World!';
+
+        $result = $storage->writeFile($filename, $content);
+
+        $this->assertTrue($result);
+        $this->assertFileExists($this->testDirectory . $filename);
+        $this->assertStringEqualsFile($this->testDirectory . $filename, $content);
+    }
+
     public function testWriteFile(): void
     {
         $storage = new LocalStorage($this->testDirectory);

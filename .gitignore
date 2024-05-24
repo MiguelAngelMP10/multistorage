@@ -53,3 +53,5 @@ ehthumbs.db
 
 # Ignore coverage reports
 /build/logs/
+
+tests/test_files/
