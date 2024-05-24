@@ -10,12 +10,8 @@ class S3Storage implements StorageInterface
 {
     private S3Client $s3Client;
     private string $bucketName;
-    private ?string $fileUrl = null;
+    private ?string $filePath = null;
 
-    public function getFileUrl(): ?string
-    {
-        return $this->fileUrl;
-    }
 
     public function __construct(string $bucketName, string $region, string $accessKeyId, string $secretAccessKey)
     {
@@ -39,11 +35,16 @@ class S3Storage implements StorageInterface
                 'Body' => $content,
                 'ACL' => 'private',
             ]);
-            $this->fileUrl = $result->get('ObjectURL');
+            $this->filePath = $result->get('ObjectURL');
             return true;
         } catch (AwsException $e) {
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
     }
 }
