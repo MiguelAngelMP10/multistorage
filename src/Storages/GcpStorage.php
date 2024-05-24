@@ -9,6 +9,7 @@ class GcpStorage implements StorageInterface
 {
     private StorageClient $storageClient;
     private string $bucketName;
+    private ?string $filePath = null;
 
     public function __construct(string $bucketName, string $keyFilePath)
     {
@@ -22,13 +23,19 @@ class GcpStorage implements StorageInterface
     {
         try {
             $bucket = $this->storageClient->bucket($this->bucketName);
-            $bucket->upload($content, [
+            $object = $bucket->upload($content, [
                 'name' => $filename
             ]);
+            $this->filePath = $object->info()['selfLink'];
             return true;
         } catch (\Exception $e) {
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
     }
 }

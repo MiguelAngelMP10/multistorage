@@ -10,6 +10,7 @@ class AzureStorage implements StorageInterface
 {
     private BlobRestProxy $blobClient;
     private string $containerName;
+    private ?string $filePath = null;
 
     public function __construct(string $connectionString, string $containerName)
     {
@@ -21,10 +22,17 @@ class AzureStorage implements StorageInterface
     {
         try {
             $this->blobClient->createBlockBlob($this->containerName, $filename, $content);
+            $this->filePath = sprintf("https://%s.blob.core.windows.net/%s/%s", $this->blobClient->getAccountName(), $this->containerName, $filename);
             return true;
         } catch (ServiceException $e) {
             echo "Error: " . $e->getMessage();
+            $this->filePath = null;
             return false;
         }
+    }
+
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
     }
 }

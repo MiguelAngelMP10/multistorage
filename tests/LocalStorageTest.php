@@ -54,4 +54,12 @@ class LocalStorageTest extends TestCase
         $this->assertFileExists($this->testDirectory . $filename);
         $this->assertStringEqualsFile($this->testDirectory . $filename, $content);
     }
+
+    public function testGetFilePath(): void
+    {
+        $storage = new LocalStorage($this->testDirectory);
+        $this->assertNull($storage->getFilePath());
+        $storage->writeFile('test.txt', 'Hello, World!');
+        $this->assertNotNull($storage->getFilePath());
+    }
 }

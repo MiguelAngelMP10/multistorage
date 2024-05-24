@@ -10,6 +10,8 @@ class DigitalOceanSpacesStorage implements StorageInterface
 {
     private S3Client $s3Client;
     private string $spaceName;
+    private ?string $filePath = null;
+
 
     public function __construct(string $spaceName, string $region, string $accessKeyId, string $secretAccessKey)
     {
@@ -34,10 +36,17 @@ class DigitalOceanSpacesStorage implements StorageInterface
                 'Body' => $content,
                 'ACL' => 'private',
             ]);
+            $this->filePath = "https://{$this->spaceName}.{$this->s3Client->getRegion()}.digitaloceanspaces.com/{$filename}";
+
             return true;
         } catch (AwsException $e) {
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
     }
 }
