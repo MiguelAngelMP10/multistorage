@@ -35,7 +35,7 @@ class S3Storage implements StorageInterface
                 'Body' => $content,
                 'ACL' => 'private',
             ]);
-            $this->filePath = $result->get('ObjectURL');
+            $this->filePath = $filename;
             return true;
         } catch (AwsException $e) {
             echo "Error: " . $e->getMessage();
